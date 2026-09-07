@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chai Aur Code | DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`;
+        document.querySelector('.language').appendChild(li);
+    }
+    addLanguage('python');
+    addLanguage('typescript');
+    // tree traversal is done always from starting to ending which means that we are wasting a lot of time 
+    // let us see the optimal version of this one 
+    function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.language').appendChild(li);
+    }
+    addOptiLanguage('Golang');
+    // this one is optimised and we will not need to traverse the whole tree
+
+    // now let us move to the editing and removal of the values 
+
+
+    // edit
+
+    // we know that we first need to select the values to edit them
+
+    const secLang = document.querySelector("li:nth-child(2)");
+    secLang.innerHTML = "Mojo";
+
+    // this was first and bad approach i.e., the same issue innerHTML again need to traverse the whole tree
+
+    // second method : similar to first
+    const newLi = document.createElement('li');
+    newLi.textContent = "Mojo";
+    secLang.replaceWith(newLi);
+    // now let us move to the third one
+    // replace javascript with c++
+
+    const fstLang = document.querySelector('li:first-child');
+    fstLang.outerHTML = '<li>C++</li>';
+
+    // now let us move to remove
+
+    // remove the Golang
+
+    const lstLang = document.querySelector('li:last-child');
+    lstLang.remove();
+</script>
+</html>

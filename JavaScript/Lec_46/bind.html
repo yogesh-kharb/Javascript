@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code - React Bind Class</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #ff9800;
+            color: #121212;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        button:hover {
+            background-color: #e68a00;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chai aur Code: JS Context & Bind</h1>
+    <button>Button Clicked</button>
+
+    <script>
+        class React {
+            constructor() {
+                this.library = "React";
+                this.server = "http://localhost:3000";
+
+                /*
+                Requirements & Fixes:
+                1. 'this.handleClick' ke aage se () hataya taaki yeh page load par hi execute na ho jaye.
+                2. '.bind(this)' ka use kiya taaki handleClick function ke andar 'this' ka reference 
+                   React class ke instances (jaise 'app') se hi juda rahe, na ki HTML Button se.
+                */
+                document
+                    .querySelector('button')
+                    .addEventListener('click', this.handleClick.bind(this));
+            }
+
+            handleClick() {
+                console.log("Button clicked successfully!");
+                console.log(`Library: ${this.library}`); 
+                console.log(`Server URL: ${this.server}`); // Ab yeh correctly work karega!
+            }
+        }
+
+        // Class ka instance create kiya
+        const app = new React();
+    </script>
+</body>
+</html>
